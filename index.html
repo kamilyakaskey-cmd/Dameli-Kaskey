@@ -1,763 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dameli Codes | Web Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --pink:       #f9a8c9;
-      --pink-soft:  #fde8f1;
-      --pink-deep:  #e8649a;
-      --pink-dark:  #c94b7e;
-      --white:      #ffffff;
-      --bg:         #fdf5f9;
-      --card:       #ffffff;
-      --border:     #f5c9df;
-      --text:       #2c1a24;
-      --text-mid:   #6b3a53;
-      --text-soft:  #a07088;
-      --shadow:     rgba(200, 80, 130, 0.12);
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dameli — Web Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --white:#FFFFFF;
+  --pink:#FBD7E4;
+  --ink:#0F0C11;
+  --ink-soft:#4B454C;
+  --slate:#8B838C;
+  --line:#EDEAEA;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--white);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--pink);color:var(--ink);}
+.serif{font-family:'Fraunces',serif;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+svg.icon{width:20px;height:20px;flex-shrink:0;}
+del{text-decoration:line-through;text-decoration-color:var(--ink);text-decoration-thickness:2px;color:var(--slate);font-style:normal;}
+em.hl{font-style:normal;color:var(--ink);background:var(--pink);padding:0 6px;border-radius:4px;}
 
-    /* ── BACKGROUND TEXTURE ── */
-    body::before {
-      content:''; position:fixed; inset:0;
-      background:
-        radial-gradient(ellipse 60% 40% at 85% 10%, rgba(249,168,201,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 10% 90%, rgba(232,100,154,0.1) 0%, transparent 70%);
-      pointer-events:none; z-index:0;
-    }
+/* ===== NAV — minimal, logo + language only ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  background:rgba(255,255,255,0.94);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--line);
+  height:76px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 44px;
+}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.brand-mark{
+  width:36px;height:36px;background:var(--pink);border:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink);font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;
+  border-radius:7px;
+}
+.brand-word{font-family:'Fraunces',serif;font-weight:700;font-size:1.2rem;color:var(--ink);letter-spacing:0.2px;}
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top:0; left:0; right:0; z-index:200;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(14px);
-      border-bottom: 1.5px solid var(--border);
-      padding: 0 40px;
-      height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-left { display:flex; align-items:center; gap:16px; }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem; font-weight:700;
-      color: var(--text); text-decoration:none;
-      letter-spacing: 0.3px;
-    }
-    .nav-logo span { color: var(--pink-deep); }
+.nav-right{display:flex;align-items:center;gap:36px;}
+.nav-links{display:flex;gap:26px;list-style:none;}
+.nav-links a{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.82rem;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:0.2px;
+}
+.nav-links a:hover{color:var(--ink-soft);}
+.nav-links .num{
+  font-family:'IBM Plex Mono',monospace;font-size:0.62rem;font-weight:700;color:var(--ink);
+  background:var(--pink);border:1.5px solid var(--ink);border-radius:5px;
+  width:24px;height:19px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
 
-    /* Flag language switcher */
-    .lang-switcher { display:flex; gap:6px; align-items:center; }
-    .lang-btn {
-      background: none; border: 1.5px solid transparent;
-      border-radius: 8px; cursor:pointer;
-      font-size: 1.3rem; padding: 3px 6px;
-      transition: border-color 0.2s, background 0.2s;
-      line-height: 1;
-    }
-    .lang-btn:hover { background: var(--pink-soft); }
-    .lang-btn.active { border-color: var(--pink-deep); background: var(--pink-soft); }
+.lang-switcher{display:flex;gap:4px;}
+.lang-btn{
+  width:32px;height:28px;background:var(--white);border:1.5px solid var(--ink);border-radius:6px;cursor:pointer;
+  font-size:0.68rem;font-weight:800;font-family:'IBM Plex Mono',monospace;
+  color:var(--ink);transition:background .15s,color .15s;
+}
+.lang-btn.active{background:var(--pink);}
 
-    .nav-links { display:flex; gap:30px; list-style:none; }
-    .nav-links a {
-      font-size: 0.875rem; font-weight:600;
-      color: var(--text-mid); text-decoration:none;
-      letter-spacing: 0.3px;
-      transition: color 0.2s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content:''; position:absolute; bottom:-4px; left:0; right:0;
-      height:2px; background:var(--pink-deep);
-      transform:scaleX(0); transition:transform 0.2s; border-radius:2px;
-    }
-    .nav-links a:hover { color:var(--pink-deep); }
-    .nav-links a:hover::after { transform:scaleX(1); }
+@media(max-width:860px){ .nav-links{display:none;} nav{padding:0 22px;} }
 
-    /* ── GENERIC LAYOUT ── */
-    section { position:relative; z-index:1; }
-    .wrap { max-width: 1080px; margin:0 auto; padding: 90px 28px; }
+/* ===== LAYOUT ===== */
+section{position:relative;}
+.wrap{max-width:1120px;margin:0 auto;padding:100px 32px;}
 
-    .section-tag {
-      display:inline-block;
-      font-size: 0.72rem; font-weight:800;
-      letter-spacing: 2px; text-transform:uppercase;
-      color: var(--pink-deep);
-      background: var(--pink-soft);
-      border: 1.5px solid var(--border);
-      border-radius: 50px; padding: 4px 14px;
-      margin-bottom: 14px;
-    }
-    h2.section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 700; color: var(--text);
-      margin-bottom: 10px; line-height:1.2;
-    }
-    h2.section-title em { font-style:normal; color:var(--pink-deep); }
-    .section-lead {
-      font-size: 1rem; color: var(--text-soft);
-      font-weight: 500; line-height:1.7;
-      max-width: 520px; margin-bottom: 52px;
-    }
+.kicker{
+  font-family:'IBM Plex Mono',monospace;font-size:0.74rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--ink);
+  margin-bottom:18px;
+}
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display:flex; align-items:center; justify-content:center;
-      text-align:center; padding: 110px 28px 70px;
-    }
-    .hero-inner { max-width:720px; }
-    .hero-eyebrow {
-      display:inline-flex; align-items:center; gap:8px;
-      background: var(--pink-soft);
-      border: 1.5px solid var(--border);
-      border-radius:50px; padding:6px 18px;
-      font-size:0.8rem; font-weight:700;
-      color: var(--pink-dark); letter-spacing:1px;
-      margin-bottom: 28px;
-      animation: fadeUp 0.6s ease both;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 7vw, 5.2rem);
-      font-weight:700; line-height:1.1;
-      color: var(--text); margin-bottom:8px;
-      animation: fadeUp 0.7s 0.1s ease both;
-    }
-    .hero h1 .accent { color: var(--pink-deep); }
-    .hero-sub {
-      font-size:1.05rem; color:var(--text-soft);
-      font-weight:500; margin-bottom:26px;
-      animation: fadeUp 0.7s 0.2s ease both;
-    }
-    .hero-desc {
-      font-size:1rem; color:var(--text-mid);
-      line-height:1.75; max-width:540px;
-      margin:0 auto 40px;
-      animation: fadeUp 0.7s 0.3s ease both;
-    }
-    .hero-ctas {
-      display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
-      animation: fadeUp 0.7s 0.4s ease both;
-    }
-    .btn {
-      display:inline-flex; align-items:center; gap:8px;
-      font-family:'Plus Jakarta Sans',sans-serif;
-      font-size:0.9rem; font-weight:700;
-      border-radius:50px; padding:13px 30px;
-      cursor:pointer; text-decoration:none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn:hover { transform:translateY(-3px); }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--pink-deep), var(--pink-dark));
-      color:white; border:none;
-      box-shadow: 0 6px 22px rgba(200,75,126,0.28);
-    }
-    .btn-primary:hover { box-shadow: 0 10px 30px rgba(200,75,126,0.35); }
-    .btn-outline {
-      background: white; color: var(--pink-deep);
-      border: 2px solid var(--pink);
-    }
-    .btn-outline:hover { background: var(--pink-soft); }
+h2.section-title{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:clamp(1.9rem,3.4vw,2.6rem);
+  color:var(--ink);margin-bottom:14px;line-height:1.16;
+}
+.section-lead{font-size:0.97rem;color:var(--ink-soft);line-height:1.7;max-width:520px;margin-bottom:56px;}
 
-    /* ── ABOUT ── */
-    .about-grid {
-      display:grid; grid-template-columns:1fr 1.4fr;
-      gap:52px; align-items:center;
-    }
-    .about-card {
-      background:var(--card); border-radius:24px;
-      padding:38px 32px;
-      border: 1.5px solid var(--border);
-      box-shadow: 0 6px 32px var(--shadow);
-    }
-    .avatar-wrap {
-      width:110px; height:110px;
-      background: linear-gradient(135deg, var(--pink-soft), var(--pink));
-      border-radius:50%; margin:0 auto 18px;
-      display:flex; align-items:center; justify-content:center;
-      font-size:3.2rem;
-      border: 3px solid white;
-      box-shadow: 0 4px 16px var(--shadow);
-    }
-    .about-name {
-      font-family:'Playfair Display',serif;
-      font-size:1.7rem; color:var(--pink-deep);
-      text-align:center; margin-bottom:4px;
-    }
-    .about-role {
-      text-align:center; color:var(--text-soft);
-      font-size:0.8rem; font-weight:700;
-      letter-spacing:1.5px; text-transform:uppercase; margin-bottom:22px;
-    }
-    .fact-list { display:flex; flex-direction:column; gap:10px; }
-    .fact {
-      display:flex; align-items:center; gap:10px;
-      background:var(--pink-soft); border-radius:10px;
-      padding:9px 13px; font-size:0.875rem; font-weight:600;
-      color:var(--text-mid);
-    }
+/* ===== HERO ===== */
+.hero{padding:180px 32px 70px;max-width:1180px;margin:0 auto;}
+.hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:60px;align-items:center;}
+.hero-eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:0.76rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--ink);margin-bottom:22px;
+}
+.hero h1{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:clamp(2rem,4.2vw,3.05rem);
+  line-height:1.18;color:var(--ink);letter-spacing:-0.5px;
+}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Inter',sans-serif;font-size:0.88rem;font-weight:800;
+  border-radius:8px;padding:14px 26px;cursor:pointer;text-decoration:none;
+  transition:transform .15s;border:2px solid var(--ink);
+}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--pink);color:var(--ink);}
+.btn-outline{background:var(--white);color:var(--ink);}
 
-    .about-text h3 {
-      font-family:'Playfair Display',serif;
-      font-size:1.6rem; margin-bottom:14px; color:var(--text);
-    }
-    .about-text p {
-      font-size:0.95rem; color:var(--text-mid);
-      line-height:1.8; margin-bottom:13px;
-    }
-    .about-text strong { color:var(--pink-deep); font-weight:700; }
-    .notice-box {
-      background:var(--pink-soft);
-      border:1.5px solid var(--border);
-      border-radius:14px; padding:16px 18px;
-      margin-top:18px;
-      display:flex; gap:12px; align-items:flex-start;
-      font-size:0.85rem; color:var(--text-mid); line-height:1.65;
-    }
-    .notice-box strong { color:var(--pink-dark); }
+/* browser mockup */
+.browser-wrap{display:flex;justify-content:center;}
+.browser-card{
+  width:100%;max-width:380px;background:var(--white);
+  border:2px solid var(--ink);border-radius:14px;overflow:hidden;
+}
+.browser-bar{display:flex;align-items:center;gap:6px;padding:14px 18px;border-bottom:2px solid var(--ink);}
+.browser-dot{width:9px;height:9px;border-radius:2px;background:var(--pink);border:1.5px solid var(--ink);}
+.browser-body{padding:24px;}
+.browser-hero{background:var(--pink);border:1.5px solid var(--ink);border-radius:10px;padding:28px 22px;margin-bottom:16px;}
+.browser-line{height:8px;border-radius:2px;background:var(--ink);opacity:0.85;margin-bottom:9px;}
+.browser-line.w60{width:60%;}
+.browser-line.w40{width:40%;opacity:0.5;}
+.browser-btn-mock{display:inline-block;margin-top:8px;background:var(--white);border:1.5px solid var(--ink);border-radius:5px;padding:7px 16px;font-size:0.64rem;color:var(--ink);font-weight:800;letter-spacing:0.4px;}
+.browser-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.browser-mini{background:var(--pink);border:1.5px solid var(--ink);border-radius:6px;height:52px;}
 
-    /* ── SKILLS + LANGUAGES ── */
-    .skills-bg {
-      background: linear-gradient(170deg, var(--white) 0%, var(--pink-soft) 100%);
-      border-top:1.5px solid var(--border); border-bottom:1.5px solid var(--border);
-    }
-    .skills-grid {
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-      gap:18px; margin-bottom:56px;
-    }
-    .skill-card {
-      background:white; border-radius:18px; padding:26px 20px;
-      text-align:center;
-      border:1.5px solid var(--border);
-      box-shadow:0 3px 14px var(--shadow);
-      transition:transform 0.2s, box-shadow 0.2s;
-    }
-    .skill-card:hover { transform:translateY(-5px); box-shadow:0 8px 24px var(--shadow); }
-    .skill-icon { font-size:2.2rem; margin-bottom:10px; }
-    .skill-card h4 { font-weight:800; font-size:0.95rem; color:var(--text); margin-bottom:5px; }
-    .skill-card p { font-size:0.8rem; color:var(--text-soft); line-height:1.5; }
+/* ===== ABOUT ===== */
+.about-grid{display:grid;grid-template-columns:280px 1fr;gap:52px;}
+.profile-card{
+  background:var(--pink);border:2px solid var(--ink);border-radius:14px;
+  padding:32px 26px;height:fit-content;
+}
+.profile-avatar{
+  width:70px;height:70px;border-radius:10px;
+  background:var(--white);border:2px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-size:1.8rem;font-weight:700;color:var(--ink);
+  margin:0 auto 16px;
+}
+.profile-name{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;text-align:center;color:var(--ink);}
+.profile-role{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-soft);margin:5px 0 22px;}
+.profile-facts{display:flex;flex-direction:column;gap:2px;}
+.pf-row{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-top:1.5px solid var(--ink);font-size:0.82rem;}
+.pf-label{font-family:'IBM Plex Mono',monospace;font-size:0.64rem;letter-spacing:0.8px;text-transform:uppercase;color:var(--ink-soft);}
+.pf-val{color:var(--ink);font-weight:800;text-align:right;}
 
-    .lang-grid {
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-      gap:16px;
-    }
-    .lang-card {
-      background:white; border-radius:16px; padding:18px 20px;
-      border:1.5px solid var(--border);
-      box-shadow:0 3px 14px var(--shadow);
-      display:flex; align-items:center; gap:14px;
-      transition:transform 0.2s;
-    }
-    .lang-card:hover { transform:translateY(-3px); }
-    .lang-flag { font-size:2rem; }
-    .lang-name { font-weight:800; font-size:0.95rem; color:var(--text); }
-    .lang-level { font-size:0.78rem; color:var(--text-soft); font-weight:500; margin-top:2px; }
-    .level-dots { display:flex; gap:4px; margin-top:5px; }
-    .dot {
-      width:8px; height:8px; border-radius:50%;
-      background:var(--border);
-    }
-    .dot.filled { background:var(--pink-deep); }
+.about-main h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;margin-bottom:16px;color:var(--ink);}
+.about-main p{font-size:0.97rem;color:var(--ink-soft);line-height:1.85;margin-bottom:14px;}
+.about-main strong{color:var(--ink);font-weight:800;}
 
-    /* ── PORTFOLIO ── */
-    .portfolio-grid {
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-      gap:24px;
-    }
-    .project-card {
-      background:white; border-radius:20px; overflow:hidden;
-      border:1.5px solid var(--border);
-      box-shadow:0 4px 18px var(--shadow);
-      transition:transform 0.25s, box-shadow 0.25s;
-    }
-    .project-card:hover { transform:translateY(-7px); box-shadow:0 12px 36px var(--shadow); }
-    .project-thumb {
-      height:160px;
-      background:linear-gradient(135deg,var(--pink-soft),var(--pink));
-      display:flex; align-items:center; justify-content:center;
-      font-size:3rem; position:relative; overflow:hidden;
-    }
-    .project-thumb .coming {
-      position:absolute; bottom:0; left:0; right:0;
-      background:rgba(201,75,126,0.82);
-      color:white; font-size:0.68rem; font-weight:800;
-      letter-spacing:1.5px; text-transform:uppercase;
-      text-align:center; padding:5px;
-      transform:translateY(100%); transition:transform 0.3s;
-    }
-    .project-card:hover .coming { transform:translateY(0); }
-    .project-body { padding:18px 20px; }
-    .project-body h4 { font-weight:800; font-size:0.97rem; color:var(--text); margin-bottom:5px; }
-    .project-body p { font-size:0.82rem; color:var(--text-soft); line-height:1.55; margin-bottom:11px; }
-    .tags { display:flex; flex-wrap:wrap; gap:5px; }
-    .tag {
-      font-size:0.68rem; font-weight:800; letter-spacing:0.5px;
-      text-transform:uppercase; padding:3px 9px; border-radius:50px;
-      background:var(--pink-soft); color:var(--pink-dark);
-      border:1px solid var(--border);
-    }
+.notice-box{margin-top:26px;background:var(--pink);border:2px solid var(--ink);border-radius:12px;padding:22px 24px;}
+.notice-label{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);margin-bottom:10px;display:block;}
+.notice-box p{font-size:0.86rem;color:var(--ink-soft);line-height:1.7;}
+.notice-box strong{color:var(--ink);}
 
-    /* ── SERVICES ── */
-    .services-bg {
-      background:linear-gradient(170deg,white 0%,var(--pink-soft) 100%);
-      border-top:1.5px solid var(--border); border-bottom:1.5px solid var(--border);
-    }
-    .services-intro {
-      display:grid; grid-template-columns:1fr 1fr; gap:42px;
-      align-items:start; margin-bottom:50px;
-    }
-    .services-intro .text p {
-      font-size:0.97rem; color:var(--text-mid); line-height:1.8; margin-bottom:13px;
-    }
-    .services-intro .text strong { color:var(--pink-deep); }
-    .offer-grid {
-      display:grid; grid-template-columns:1fr 1fr; gap:14px;
-    }
-    .offer-item {
-      background:white; border-radius:14px; padding:16px 18px;
-      border:1.5px solid var(--border);
-      box-shadow:0 2px 10px var(--shadow);
-    }
-    .offer-item .o-icon { font-size:1.4rem; margin-bottom:6px; }
-    .offer-item h5 { font-weight:800; font-size:0.88rem; color:var(--text); margin-bottom:3px; }
-    .offer-item p { font-size:0.78rem; color:var(--text-soft); line-height:1.45; }
-    .cta-box {
-      background:linear-gradient(135deg,var(--pink-deep),var(--pink-dark));
-      border-radius:20px; padding:34px 36px;
-      color:white; text-align:center;
-    }
-    .cta-box h3 { font-family:'Playfair Display',serif; font-size:1.6rem; margin-bottom:10px; }
-    .cta-box p { font-size:0.92rem; line-height:1.7; opacity:0.9; margin-bottom:22px; }
-    .btn-white {
-      background:white; color:var(--pink-dark);
-      font-weight:800; font-size:0.9rem;
-      border:none; border-radius:50px; padding:13px 30px;
-      cursor:pointer; text-decoration:none;
-      display:inline-block;
-      transition:transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    }
-    .btn-white:hover { transform:translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+/* ===== SKILLS ===== */
+.skills-cols{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;}
+.subheading{
+  font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--ink);margin-bottom:22px;
+  display:flex;align-items:center;gap:10px;
+}
+.subheading::after{content:'';flex:1;height:1px;background:var(--line);}
 
-    /* ── CONTACT ── */
-    .contact-grid {
-      display:grid; grid-template-columns:1.1fr 1fr; gap:44px; align-items:start;
-    }
-    .contact-form-box {
-      background:white; border-radius:24px; padding:38px 36px;
-      border:1.5px solid var(--border);
-      box-shadow:0 8px 36px var(--shadow);
-    }
-    .contact-form-box h3 {
-      font-family:'Playfair Display',serif;
-      font-size:1.7rem; color:var(--text); margin-bottom:8px;
-    }
-    .contact-form-box .form-sub {
-      font-size:0.88rem; color:var(--text-soft); margin-bottom:26px; line-height:1.6;
-    }
-    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .field { display:flex; flex-direction:column; gap:5px; margin-bottom:14px; }
-    .field label {
-      font-size:0.78rem; font-weight:800; color:var(--text-mid);
-      letter-spacing:0.5px; text-transform:uppercase;
-    }
-    .field input, .field textarea, .field select {
-      background:var(--bg); border:1.5px solid var(--border);
-      border-radius:10px; padding:11px 14px;
-      font-family:'Plus Jakarta Sans',sans-serif;
-      font-size:0.9rem; color:var(--text);
-      outline:none; transition:border-color 0.2s;
-      width:100%;
-    }
-    .field input:focus, .field textarea:focus, .field select:focus {
-      border-color:var(--pink-deep);
-      background:white;
-    }
-    .field textarea { resize:vertical; min-height:100px; }
-    .form-submit {
-      width:100%; padding:14px;
-      background:linear-gradient(135deg,var(--pink-deep),var(--pink-dark));
-      color:white; font-weight:800; font-size:0.95rem;
-      border:none; border-radius:12px; cursor:pointer;
-      font-family:'Plus Jakarta Sans',sans-serif;
-      transition:opacity 0.2s, transform 0.2s;
-      margin-top:4px;
-    }
-    .form-submit:hover { opacity:0.9; transform:translateY(-2px); }
-    .form-success {
-      display:none; background:var(--pink-soft);
-      border:1.5px solid var(--border); border-radius:12px;
-      padding:16px; text-align:center;
-      font-size:0.9rem; color:var(--pink-dark); font-weight:700;
-      margin-top:12px;
-    }
+.competency-list{display:flex;flex-direction:column;}
+.competency{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line);}
+.competency:last-child{border-bottom:1px solid var(--line);}
+.competency .c-icon{
+  width:42px;height:42px;flex-shrink:0;border-radius:9px;
+  background:var(--pink);border:1.5px solid var(--ink);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+}
+.competency h4{font-size:0.95rem;font-weight:800;color:var(--ink);margin-bottom:4px;}
+.competency p{font-size:0.83rem;color:var(--ink-soft);line-height:1.55;}
 
-    .contact-info { display:flex; flex-direction:column; gap:20px; }
-    .info-card {
-      background:white; border-radius:18px; padding:24px 22px;
-      border:1.5px solid var(--border);
-      box-shadow:0 3px 14px var(--shadow);
-    }
-    .info-card h4 { font-weight:800; font-size:0.88rem; color:var(--text); margin-bottom:10px; letter-spacing:0.5px; text-transform:uppercase; }
-    .info-item { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
-    .info-item .i-icon { font-size:1.1rem; }
-    .info-item a { color:var(--pink-deep); font-weight:700; font-size:0.9rem; text-decoration:none; }
-    .info-item a:hover { text-decoration:underline; }
-    .info-item span { color:var(--text-mid); font-size:0.9rem; font-weight:600; }
+.lang-list{display:flex;flex-direction:column;}
+.lang-row{padding:16px 0;border-top:1px solid var(--line);}
+.lang-row:last-child{border-bottom:1px solid var(--line);}
+.lang-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px;}
+.lang-name{font-weight:800;font-size:0.92rem;color:var(--ink);}
+.lang-level{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);font-weight:700;}
+.bar-track{height:6px;background:var(--white);border:1.5px solid var(--ink);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;background:var(--pink);}
 
-    .parental-card {
-      background:linear-gradient(135deg,#fff0f7,#fde8f1);
-      border:1.5px solid var(--pink);
-      border-radius:18px; padding:20px 22px;
-    }
-    .parental-card h4 { font-weight:800; font-size:0.82rem; color:var(--pink-dark); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
-    .parental-card p { font-size:0.84rem; color:var(--text-mid); line-height:1.65; }
-    .parental-card strong { color:var(--pink-dark); }
+/* ===== PORTFOLIO — grid ===== */
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.case-card{border:1.5px solid var(--line);border-radius:12px;overflow:hidden;transition:border-color .15s;}
+.case-card:hover{border-color:var(--ink);}
+.case-thumb{
+  height:110px;background:var(--pink);border-bottom:1.5px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-weight:700;font-size:1.6rem;color:var(--ink);
+}
+.case-card:hover .case-thumb{border-bottom-color:var(--ink);}
+.case-body{padding:18px 18px 20px;}
+.case-title{font-weight:800;font-size:0.95rem;color:var(--ink);margin-bottom:6px;}
+.case-desc{font-size:0.8rem;color:var(--ink-soft);line-height:1.55;}
+@media(max-width:860px){ .case-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:560px){ .case-grid{grid-template-columns:1fr;} }
 
-    /* ── FOOTER ── */
-    footer {
-      background:var(--text); color:rgba(255,255,255,0.6);
-      padding:44px 28px; text-align:center;
-      position:relative; z-index:1;
-    }
-    .footer-logo {
-      font-family:'Playfair Display',serif;
-      font-size:1.5rem; color:var(--pink);
-      margin-bottom:10px;
-    }
-    footer p { font-size:0.82rem; margin-top:5px; }
-    footer a { color:var(--pink); text-decoration:none; font-weight:600; }
-    footer a:hover { text-decoration:underline; }
-    .footer-contacts { display:flex; gap:24px; justify-content:center; margin:16px 0; flex-wrap:wrap; }
-    .footer-contacts span { display:flex; align-items:center; gap:6px; font-size:0.85rem; }
+/* ===== SERVICES ===== */
+.services-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.services-text p{font-size:0.96rem;color:var(--ink-soft);line-height:1.85;margin-bottom:15px;}
+.services-text strong{color:var(--ink);font-weight:800;}
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(24px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
+.menu-list{border-top:1px solid var(--line);}
+.menu-item{display:flex;gap:16px;align-items:flex-start;padding:18px 4px;border-bottom:1px solid var(--line);}
+.menu-item .m-icon{
+  width:36px;height:36px;border-radius:8px;background:var(--pink);border:1.5px solid var(--ink);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.menu-item h5{font-size:0.93rem;font-weight:800;color:var(--ink);margin-bottom:3px;}
+.menu-item p{font-size:0.82rem;color:var(--ink-soft);line-height:1.55;}
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:768px){
-      nav { padding:0 20px; }
-      .nav-links { display:none; }
-      .about-grid, .services-intro, .contact-grid { grid-template-columns:1fr; }
-      .form-row { grid-template-columns:1fr; }
-      .offer-grid { grid-template-columns:1fr; }
-    }
-    @media(max-width:480px){
-      .lang-grid { grid-template-columns:1fr 1fr; }
-    }
+.cta-panel{
+  margin-top:56px;background:var(--pink);border:2px solid var(--ink);border-radius:16px;
+  padding:46px 48px;color:var(--ink);
+  display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;
+}
+.cta-panel h3{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:700;margin-bottom:10px;}
+.cta-panel p{font-size:0.9rem;color:var(--ink-soft);line-height:1.65;max-width:460px;}
+@media(max-width:760px){ .cta-panel{grid-template-columns:1fr;} }
 
-    /* ── HIDDEN LANGUAGE CONTENT ── */
-    [data-lang] { display:none; }
-    [data-lang].active { display:block; }
-    [data-lang-inline] { display:none; }
-    [data-lang-inline].active { display:inline; }
-  </style>
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:50px;align-items:start;}
+.form-panel{background:var(--white);border:1.5px solid var(--line);border-radius:16px;padding:42px 40px;}
+.form-panel h3{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;margin-bottom:8px;}
+.form-sub{font-size:0.86rem;color:var(--ink-soft);line-height:1.65;margin-bottom:30px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
+.field label{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;font-weight:700;color:var(--ink-soft);letter-spacing:1px;text-transform:uppercase;}
+.field input,.field textarea,.field select{
+  background:transparent;border:none;border-bottom:1.5px solid var(--line);
+  padding:9px 2px;font-family:'Inter',sans-serif;font-size:0.92rem;color:var(--ink);
+  outline:none;transition:border-color .2s;width:100%;
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--ink);}
+.field textarea{resize:vertical;min-height:96px;}
+.form-submit{
+  width:100%;padding:15px;background:var(--pink);color:var(--ink);font-weight:800;font-size:0.92rem;
+  border:2px solid var(--ink);border-radius:8px;cursor:pointer;font-family:'Inter',sans-serif;
+  transition:transform .15s;margin-top:6px;
+}
+.form-submit:hover{transform:translateY(-2px);}
+.form-success{display:none;background:var(--pink);border:2px solid var(--ink);border-radius:10px;padding:14px;text-align:center;font-size:0.86rem;color:var(--ink);font-weight:800;margin-top:14px;}
+
+.contact-info{display:flex;flex-direction:column;gap:18px;}
+.info-card{background:var(--white);border:1.5px solid var(--line);border-radius:14px;padding:24px 24px;}
+.info-card h4{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink);margin-bottom:14px;}
+.info-item{display:flex;align-items:center;gap:11px;margin-bottom:12px;color:var(--ink);}
+.info-item:last-child{margin-bottom:0;}
+.info-item a{color:var(--ink-soft);font-weight:700;font-size:0.88rem;text-decoration:none;}
+.info-item a:hover{color:var(--ink);}
+.info-item span{color:var(--ink-soft);font-size:0.88rem;font-weight:600;}
+.info-card p.small{font-size:0.85rem;color:var(--ink-soft);line-height:1.6;}
+
+.verify-card{background:var(--pink);border:2px solid var(--ink);border-radius:14px;padding:24px 24px;}
+.verify-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:var(--ink);}
+.verify-card h4{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink);}
+.verify-card p{font-size:0.85rem;color:var(--ink-soft);line-height:1.65;}
+.verify-card strong{color:var(--ink);}
+
+/* ===== FOOTER — numbered nav, like reference ===== */
+footer{background:var(--white);border-top:1.5px solid var(--ink);padding:64px 32px 34px;}
+.footer-inner{max-width:1120px;margin:0 auto;}
+.footer-top{margin-bottom:32px;}
+.footer-brand{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--ink);font-weight:700;margin-bottom:10px;}
+.footer-tagline{font-size:0.88rem;color:var(--ink-soft);max-width:280px;line-height:1.6;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:26px;border-top:1px solid var(--line);}
+.footer-contacts{display:flex;gap:22px;flex-wrap:wrap;}
+.footer-contacts a{color:var(--ink-soft);text-decoration:none;font-size:0.84rem;font-weight:600;}
+.footer-contacts a:hover{color:var(--ink);}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--slate);}
+
+/* responsive */
+@media(max-width:900px){
+  .hero-grid,.about-grid,.skills-cols,.services-layout,.contact-grid{grid-template-columns:1fr;}
+  .profile-card{max-width:340px;margin:0 auto;}
+  .hero{padding-top:130px;}
+}
+@media(max-width:640px){
+  .form-row{grid-template-columns:1fr;}
+  .wrap{padding:70px 22px;}
+}
+
+[data-lang]{display:none;}
+[data-lang].active{display:block;}
+[data-lang-inline]{display:none;}
+[data-lang-inline].active{display:inline;}
+</style>
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5L2 12l6 7"/><path d="M16 5l6 7-6 7"/></symbol>
+    <symbol id="icon-devices" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="14" height="10" rx="1"/><rect x="17" y="9" width="5" height="10" rx="1"/><path d="M6 18h6"/></symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 010 18"/><path d="M12 3a15 15 0 000 18"/></symbol>
+    <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></symbol>
+    <symbol id="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18"/><path d="M9 21v-4h6v4"/><path d="M8 7h1M15 7h1M8 11h1M15 11h1M8 15h1M15 15h1"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 00-2-1.2L16 3h-4l-.5 2.6a7 7 0 00-2 1.2l-2.4-1-2 3.4 2 1.6A7 7 0 005 12a7 7 0 00.1 1.2l-2 1.6 2 3.4 2.4-1a7 7 0 002 1.2L12 21h4l.5-2.6a7 7 0 002-1.2l2.4 1 2-3.4-2-1.6c.1-.4.1-.8.1-1.2z"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.5c1.4 2.8 3.7 5.1 6.5 6.5l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3.7c0-.6.4-1 1-1h3.8c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.5z"/></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 01-8.5 8.5c-1.2 0-2.3-.3-3.3-.8L3 21l1.8-6.2A8.5 8.5 0 1121 11.5z"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/></symbol>
+  </defs>
+</svg>
+
 <!-- NAV -->
 <nav>
-  <div class="nav-left">
-    <!-- Language switcher LEFT side with logo -->
-    <div class="lang-switcher" aria-label="Language switcher">
-      <button class="lang-btn active" data-target="en" onclick="setLang('en')" title="English">🇬🇧</button>
-      <button class="lang-btn"        data-target="ru" onclick="setLang('ru')" title="Русский">🇷🇺</button>
-      <button class="lang-btn"        data-target="kk" onclick="setLang('kk')" title="Қазақша">🇰🇿</button>
+  <a href="#home" class="brand">
+    <div class="brand-mark">D</div>
+    <div class="brand-word">Dameli</div>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about"><span class="num">01</span><span data-nav="about">About</span></a></li>
+      <li><a href="#skills"><span class="num">02</span><span data-nav="skills">Skills</span></a></li>
+      <li><a href="#portfolio"><span class="num">03</span><span data-nav="portfolio">Portfolio</span></a></li>
+      <li><a href="#services"><span class="num">04</span><span data-nav="services">Services</span></a></li>
+      <li><a href="#contact"><span class="num">05</span><span data-nav="contact">Contact</span></a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-target="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-target="ru" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" data-target="kk" onclick="setLang('kk')">KK</button>
     </div>
-    <a href="#home" class="nav-logo">Dameli<span>.codes</span></a>
   </div>
-  <ul class="nav-links">
-    <li><a href="#about"     data-nav="about">About</a></li>
-    <li><a href="#skills"    data-nav="skills">Skills</a></li>
-    <li><a href="#portfolio" data-nav="portfolio">Portfolio</a></li>
-    <li><a href="#services"  data-nav="services">Services</a></li>
-    <li><a href="#contact"   data-nav="contact">Contact</a></li>
-  </ul>
 </nav>
 
 <!-- HERO -->
 <section id="home" class="hero">
-  <div class="hero-inner">
-
-    <div class="hero-eyebrow">
-      <span data-lang="en" class="active">✦ Young Web Developer for Businesses</span>
-      <span data-lang="ru">✦ Молодой веб-разработчик для бизнеса</span>
-      <span data-lang="kk">✦ Бизнеске арналған жас веб-әзірлеуші</span>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">
+        <span data-lang="en" class="active">Dameli — Web Development</span>
+        <span data-lang="ru">Дамели — Веб-разработка</span>
+        <span data-lang="kk">Дәмелі — Веб-әзірлеу</span>
+      </div>
+      <h1>
+        <span data-lang="en" class="active">Clean, <del>ordinary</del> <em class="hl">professional</em> websites for small businesses.</span>
+        <span data-lang="ru">Чистые, <del>обычные</del> <em class="hl">профессиональные</em> сайты для малого бизнеса.</span>
+        <span data-lang="kk">Таза, <del>қарапайым</del> <em class="hl">кәсіби</em> сайттар шағын бизнеске.</span>
+      </h1>
+      <div class="hero-ctas">
+        <a href="#portfolio" class="btn btn-primary">
+          <span data-lang="en" class="active">View Portfolio</span>
+          <span data-lang="ru">Портфолио</span>
+          <span data-lang="kk">Портфолио</span>
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <span data-lang="en" class="active">Start a Project</span>
+          <span data-lang="ru">Начать проект</span>
+          <span data-lang="kk">Жоба бастау</span>
+        </a>
+      </div>
     </div>
 
-    <h1>
-      <span data-lang="en" class="active">Hi, I'm <span class="accent">Dameli.</span><br>I Build Websites.</span>
-      <span data-lang="ru">Привет, я <span class="accent">Дамели.</span><br>Я создаю сайты.</span>
-      <span data-lang="kk">Сәлем, мен <span class="accent">Дәмелі.</span><br>Мен сайт жасаймын.</span>
-    </h1>
-
-    <p class="hero-sub">
-      <span data-lang="en" class="active">12 years old · HTML & Python · Kazakh · Russian · English · Turkish</span>
-      <span data-lang="ru">12 лет · HTML и Python · Казахский · Русский · Английский · Турецкий</span>
-      <span data-lang="kk">12 жаста · HTML және Python · Қазақша · Орысша · Ағылшынша · Түрікше</span>
-    </p>
-
-    <p class="hero-desc">
-      <span data-lang="en" class="active">I create professional, custom-built websites for businesses — designed to impress, built to perform. Let's bring your company online.</span>
-      <span data-lang="ru">Я создаю профессиональные сайты для бизнеса — красивые и функциональные. Давайте выведем ваш бизнес в интернет.</span>
-      <span data-lang="kk">Мен бизнеске арналған кәсіби сайттар жасаймын — әсерлі және тиімді. Компанияңызды онлайнға шығарайық.</span>
-    </p>
-
-    <div class="hero-ctas">
-      <a href="#portfolio" class="btn btn-primary">
-        <span data-lang="en" class="active">View My Work</span>
-        <span data-lang="ru">Мои проекты</span>
-        <span data-lang="kk">Менің жұмыстарым</span>
-      </a>
-      <a href="#contact" class="btn btn-outline">
-        <span data-lang="en" class="active">Get in Touch</span>
-        <span data-lang="ru">Связаться</span>
-        <span data-lang="kk">Хабарласу</span>
-      </a>
+    <div class="browser-wrap">
+      <div class="browser-card">
+        <div class="browser-bar">
+          <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+        </div>
+        <div class="browser-body">
+          <div class="browser-hero">
+            <div class="browser-line w60"></div>
+            <div class="browser-line w40"></div>
+            <span class="browser-btn-mock">
+              <span data-lang="en" class="active">LEARN MORE</span>
+              <span data-lang="ru">ПОДРОБНЕЕ</span>
+              <span data-lang="kk">ЕГЖЕЙ-ТЕГЖЕЙЛІ</span>
+            </span>
+          </div>
+          <div class="browser-grid">
+            <div class="browser-mini"></div>
+            <div class="browser-mini"></div>
+            <div class="browser-mini"></div>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
-
     <div data-lang="en" class="active">
-      <div class="section-tag">About Me</div>
-      <h2 class="section-title">The Developer <em>Behind the Code</em></h2>
-      <p class="section-lead">A little about who I am and what drives me to build great websites.</p>
+      <div class="kicker">About</div>
+      <h2 class="section-title">About Dameli</h2>
+      <p class="section-lead">Who I am and how I work.</p>
     </div>
     <div data-lang="ru">
-      <div class="section-tag">Обо мне</div>
-      <h2 class="section-title">Разработчик <em>за кодом</em></h2>
-      <p class="section-lead">Немного о том, кто я и что вдохновляет меня создавать сайты.</p>
+      <div class="kicker">Профиль</div>
+      <h2 class="section-title">О Дамели</h2>
+      <p class="section-lead">Кто я и как я работаю.</p>
     </div>
     <div data-lang="kk">
-      <div class="section-tag">Мен туралы</div>
-      <h2 class="section-title">Код <em>артындағы әзірлеуші</em></h2>
-      <p class="section-lead">Мен кім екенім және неліктен сайт жасайтыным туралы.</p>
+      <div class="kicker">Профиль</div>
+      <h2 class="section-title">Дәмелі туралы</h2>
+      <p class="section-lead">Мен кіммін және қалай жұмыс істеймін.</p>
     </div>
 
     <div class="about-grid">
-      <div class="about-card" style="text-align:center">
-        <div class="avatar-wrap">👩🏻‍💻</div>
-        <div class="about-name">Dameli</div>
-        <div class="about-role">
-          <span data-lang="en" class="active">Web Developer · Age 12</span>
-          <span data-lang="ru">Веб-разработчик · 12 лет</span>
-          <span data-lang="kk">Веб-әзірлеуші · 12 жаста</span>
+      <div class="profile-card">
+        <div class="profile-avatar">D</div>
+        <div class="profile-name">Dameli</div>
+        <div class="profile-role">
+          <span data-lang="en" class="active">Web Developer</span>
+          <span data-lang="ru">Веб-разработчик</span>
+          <span data-lang="kk">Веб-әзірлеуші</span>
         </div>
-        <div class="fact-list">
-          <div class="fact">🌐
-            <span data-lang="en" class="active">4 languages</span>
-            <span data-lang="ru">4 языка</span>
-            <span data-lang="kk">4 тіл</span>
-          </div>
-          <div class="fact">💻
-            <span data-lang="en" class="active">HTML & Python</span>
-            <span data-lang="ru">HTML и Python</span>
-            <span data-lang="kk">HTML және Python</span>
-          </div>
-          <div class="fact">🌍
-            <span data-lang="en" class="active">Works with clients worldwide</span>
-            <span data-lang="ru">Работаю с клиентами по всему миру</span>
-            <span data-lang="kk">Бүкіл әлем бойынша жұмыс жасаймын</span>
-          </div>
-          <div class="fact">⚡
-            <span data-lang="en" class="active">Fast & reliable delivery</span>
-            <span data-lang="ru">Быстрая и надёжная доставка</span>
-            <span data-lang="kk">Жылдам және сенімді жеткізу</span>
-          </div>
+        <div class="profile-facts">
+          <div class="pf-row"><span class="pf-label"><span data-lang="en" class="active">Core skill</span><span data-lang="ru">Навык</span><span data-lang="kk">Дағды</span></span><span class="pf-val">HTML</span></div>
+          <div class="pf-row"><span class="pf-label"><span data-lang="en" class="active">Languages</span><span data-lang="ru">Языки</span><span data-lang="kk">Тілдер</span></span><span class="pf-val">4</span></div>
+          <div class="pf-row"><span class="pf-label"><span data-lang="en" class="active">Clients</span><span data-lang="ru">Клиенты</span><span data-lang="kk">Клиенттер</span></span><span class="pf-val"><span data-lang="en" class="active">Worldwide</span><span data-lang="ru">По всему миру</span><span data-lang="kk">Бүкіл әлем</span></span></div>
         </div>
       </div>
 
-      <div class="about-text">
+      <div class="about-main">
         <div data-lang="en" class="active">
-          <h3>Hello, I'm Dameli 👋</h3>
-          <p>I'm a <strong>12-year-old web developer</strong> with a genuine passion for building websites that help businesses grow. I started coding because I love turning ideas into real, working things — and websites are one of the most powerful ways to do that.</p>
-          <p>I work with businesses of all sizes to create websites that are clean, modern, and built for their specific goals. Whether you need a simple landing page or a fully multilingual site, I approach every project with care and attention to detail.</p>
-          <p>I speak <strong>Kazakh and Russian natively</strong>, I'm fluent in <strong>English</strong>, and I have a working knowledge of <strong>Turkish</strong> — which means your website can genuinely connect with your audience in their own language.</p>
+          <h3>Professional Summary</h3>
+          <p>I'm Dameli, a web developer focused on clean, professional websites for small businesses. I code every project by hand in HTML — no templates, no shortcuts.</p>
+          <p>I work directly with business owners to build sites around their actual goals: clear structure, easy navigation, and content that fits how customers actually browse.</p>
+          <p>I'm fluent in <strong>Kazakh, Russian, and English</strong>, with working <strong>Turkish</strong> — so your site speaks to your audience in their own language.</p>
         </div>
         <div data-lang="ru">
-          <h3>Привет, я Дамели 👋</h3>
-          <p>Мне <strong>12 лет</strong>, и я искренне увлечена созданием сайтов, которые помогают бизнесу расти. Я начала программировать, потому что люблю превращать идеи в реальные, работающие вещи.</p>
-          <p>Я работаю с компаниями любого размера, создавая чистые, современные сайты, адаптированные под их цели. Будь то простая страница или полноценный многоязычный сайт — я подхожу к каждому проекту внимательно и ответственно.</p>
-          <p><strong>Казахский и русский</strong> — мои родные языки, <strong>английским</strong> я владею свободно, а <strong>турецким</strong> — на базовом уровне. Ваш сайт сможет говорить с аудиторией на её родном языке.</p>
+          <h3>Профессиональное резюме</h3>
+          <p>Я Дамели, веб-разработчик, специализируюсь на чистых, профессиональных сайтах для малого бизнеса. Каждый проект я пишу вручную на HTML — без шаблонов и упрощений.</p>
+          <p>Я работаю напрямую с владельцами бизнеса, создавая сайты под их реальные цели: чёткую структуру, удобную навигацию и контент, соответствующий поведению клиентов.</p>
+          <p>Свободно владею <strong>казахским, русским и английским</strong>, знаю <strong>турецкий</strong> на базовом уровне — ваш сайт заговорит с аудиторией на её языке.</p>
         </div>
         <div data-lang="kk">
-          <h3>Сәлем, мен Дәмелі 👋</h3>
-          <p>Маған <strong>12 жаста</strong>, мен бизнестің өсуіне көмектесетін сайттар жасауға шынымен құмармын. Идеяларды нақты, жұмысшы нәрселерге айналдыруды жақсы көремін.</p>
-          <p>Мен кез келген өлшемдегі компаниялармен жұмыс жасаймын — қарапайым бет немесе толыққанды көп тілді сайт болсын, әр жобаға мұқият қараймын.</p>
-          <p><strong>Қазақша және орысша</strong> — менің ана тілдерім, <strong>ағылшын</strong> тілінде еркін сөйлеймін, <strong>түрік</strong> тілін базалық деңгейде білемін. Сайтыңыз аудиторияңызбен олардың тілінде сөйлесе алады.</p>
-        </div>
-        <div class="notice-box">
-          <span style="font-size:1.3rem;flex-shrink:0">👪</span>
-          <p>
-            <span data-lang="en" class="active"><strong>For clients:</strong> Because Dameli is 12 years old, all project agreements, communication, and payments are managed by her parents. Every project runs under <strong>full parental supervision</strong> — ensuring a professional and trustworthy experience.</span>
-            <span data-lang="ru"><strong>Для клиентов:</strong> Поскольку Дамели 12 лет, все договорённости, коммуникация и оплата осуществляются через её родителей. Каждый проект реализуется под <strong>полным родительским контролем</strong>.</span>
-            <span data-lang="kk"><strong>Клиенттерге:</strong> Дәмелі 12 жаста болғандықтан, барлық келісімдер, байланыс және төлемдер ата-анасы арқылы жүргізіледі. Әр жоба <strong>ата-ана қадағалауымен</strong> орындалады.</span>
-          </p>
+          <h3>Кәсіби түйіндеме</h3>
+          <p>Мен Дәмелі, шағын бизнеске арналған таза, кәсіби сайттар жасайтын веб-әзірлеушімін. Әр жобаны қолмен, HTML тілінде жазамын — үлгісіз және оңайлатусыз.</p>
+          <p>Бизнес иелерімен тікелей жұмыс істеп, олардың нақты мақсаттарына сай сайттар жасаймын: анық құрылым, ыңғайлы навигация және клиенттердің тәртібіне сәйкес мазмұн.</p>
+          <p><strong>Қазақша, орысша және ағылшынша</strong> еркін сөйлеймін, <strong>түрікше</strong> негізгі деңгейде білемін — сайтыңыз аудиторияңызбен өз тілінде сөйлейді.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS & LANGUAGES -->
-<section id="skills" class="skills-bg">
+<!-- SKILLS -->
+<section id="skills">
   <div class="wrap">
-
     <div data-lang="en" class="active">
-      <div class="section-tag">What I Know</div>
-      <h2 class="section-title">Skills &amp; <em>Languages</em></h2>
-      <p class="section-lead">My technical toolkit and the languages I work in — all at your service.</p>
+      <div class="kicker">Capabilities</div>
+      <h2 class="section-title">Languages</h2>
+      <p class="section-lead">Every site is hand-coded in HTML. Fluent across four languages, so content reads naturally — not translated.</p>
     </div>
     <div data-lang="ru">
-      <div class="section-tag">Мои навыки</div>
-      <h2 class="section-title">Навыки и <em>языки</em></h2>
-      <p class="section-lead">Мои технические инструменты и языки, на которых я работаю.</p>
+      <div class="kicker">Навыки</div>
+      <h2 class="section-title">Языки</h2>
+      <p class="section-lead">Каждый сайт написан вручную на HTML. Свободно владею четырьмя языками — контент звучит естественно, а не как перевод.</p>
     </div>
     <div data-lang="kk">
-      <div class="section-tag">Білімім</div>
-      <h2 class="section-title">Дағдылар және <em>тілдер</em></h2>
-      <p class="section-lead">Менің техникалық құралдарым және жұмыс тілдерім.</p>
+      <div class="kicker">Дағдылар</div>
+      <h2 class="section-title">Дағдылар мен тілдер</h2>
+      <p class="section-lead">Әр сайт қолмен, HTML тілінде жазылады. Төрт тілде еркін сөйлеймін — мазмұн аударма емес, табиғи естіледі.</p>
     </div>
 
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-icon">🌐</div>
-        <h4>HTML &amp; CSS</h4>
-        <p data-lang="en" class="active">Hand-coded websites, clean markup, and polished styling from scratch.</p>
-        <p data-lang="ru">Сайты с нуля, чистая вёрстка и стильное оформление.</p>
-        <p data-lang="kk">Нөлден жасалған сайттар, таза белгілеу және стильді дизайн.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🐍</div>
-        <h4>Python</h4>
-        <p data-lang="en" class="active">Back-end logic, contact forms, automation, and dynamic page features.</p>
-        <p data-lang="ru">Серверная логика, формы обратной связи, автоматизация.</p>
-        <p data-lang="kk">Серверлік логика, байланыс пішіндері, автоматтандыру.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">📱</div>
-        <h4>
-          <span data-lang="en" class="active">Responsive Design</span>
-          <span data-lang="ru">Адаптивный дизайн</span>
-          <span data-lang="kk">Адаптивті дизайн</span>
-        </h4>
-        <p data-lang="en" class="active">Every website I build works beautifully on phones, tablets, and desktops.</p>
-        <p data-lang="ru">Каждый сайт отлично отображается на телефонах, планшетах и ПК.</p>
-        <p data-lang="kk">Әр сайт телефонда, планшетте және компьютерде жақсы көрінеді.</p>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon">🌍</div>
-        <h4>
-          <span data-lang="en" class="active">Multilingual Sites</span>
-          <span data-lang="ru">Многоязычные сайты</span>
-          <span data-lang="kk">Көп тілді сайттар</span>
-        </h4>
-        <p data-lang="en" class="active">I build websites in multiple languages so you can reach a wider audience.</p>
-        <p data-lang="ru">Создаю сайты на нескольких языках для широкой аудитории.</p>
-        <p data-lang="kk">Кең аудиторияға жету үшін көп тілді сайттар жасаймын.</p>
-      </div>
-    </div>
-
-    <!-- LANGUAGES -->
-    <div style="margin-bottom:16px;">
-      <div class="section-tag">
-        <span data-lang="en" class="active">Languages</span>
-        <span data-lang="ru">Языки</span>
-        <span data-lang="kk">Тілдер</span>
-      </div>
-    </div>
-    <div class="lang-grid">
-      <div class="lang-card">
-        <span class="lang-flag">🇰🇿</span>
-        <div>
-          <div class="lang-name">
-            <span data-lang="en" class="active">Kazakh</span>
-            <span data-lang="ru">Казахский</span>
-            <span data-lang="kk">Қазақша</span>
+    <div class="skills-cols" style="grid-template-columns:1fr;max-width:520px;">
+      <div>
+        <div class="lang-list">
+          <div class="lang-row">
+            <div class="lang-top">
+              <span class="lang-name">Kazakh</span>
+              <span class="lang-level"><span data-lang="en" class="active">Native</span><span data-lang="ru">Родной</span><span data-lang="kk">Ана тілі</span></span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
           </div>
-          <div class="lang-level">
-            <span data-lang="en" class="active">Native speaker</span>
-            <span data-lang="ru">Родной язык</span>
-            <span data-lang="kk">Ана тілі</span>
+          <div class="lang-row">
+            <div class="lang-top">
+              <span class="lang-name">Russian</span>
+              <span class="lang-level"><span data-lang="en" class="active">Native</span><span data-lang="ru">Родной</span><span data-lang="kk">Ана тілі</span></span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
           </div>
-          <div class="level-dots">
-            <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+          <div class="lang-row">
+            <div class="lang-top">
+              <span class="lang-name">English</span>
+              <span class="lang-level"><span data-lang="en" class="active">Fluent</span><span data-lang="ru">Свободно</span><span data-lang="kk">Еркін</span></span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
           </div>
-        </div>
-      </div>
-      <div class="lang-card">
-        <span class="lang-flag">🇷🇺</span>
-        <div>
-          <div class="lang-name">
-            <span data-lang="en" class="active">Russian</span>
-            <span data-lang="ru">Русский</span>
-            <span data-lang="kk">Орысша</span>
-          </div>
-          <div class="lang-level">
-            <span data-lang="en" class="active">Native speaker</span>
-            <span data-lang="ru">Родной язык</span>
-            <span data-lang="kk">Ана тілі</span>
-          </div>
-          <div class="level-dots">
-            <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-          </div>
-        </div>
-      </div>
-      <div class="lang-card">
-        <span class="lang-flag">🇬🇧</span>
-        <div>
-          <div class="lang-name">
-            <span data-lang="en" class="active">English</span>
-            <span data-lang="ru">Английский</span>
-            <span data-lang="kk">Ағылшынша</span>
-          </div>
-          <div class="lang-level">
-            <span data-lang="en" class="active">Fluent</span>
-            <span data-lang="ru">Свободно</span>
-            <span data-lang="kk">Еркін</span>
-          </div>
-          <div class="level-dots">
-            <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
-          </div>
-        </div>
-      </div>
-      <div class="lang-card">
-        <span class="lang-flag">🇹🇷</span>
-        <div>
-          <div class="lang-name">
-            <span data-lang="en" class="active">Turkish</span>
-            <span data-lang="ru">Турецкий</span>
-            <span data-lang="kk">Түрікше</span>
-          </div>
-          <div class="lang-level">
-            <span data-lang="en" class="active">Basic knowledge</span>
-            <span data-lang="ru">Базовый уровень</span>
-            <span data-lang="kk">Негізгі деңгей</span>
-          </div>
-          <div class="level-dots">
-            <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <div class="lang-row">
+            <div class="lang-top">
+              <span class="lang-name">Turkish</span>
+              <span class="lang-level"><span data-lang="en" class="active">Basic</span><span data-lang="ru">Базовый</span><span data-lang="kk">Негізгі</span></span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:35%"></div></div>
           </div>
         </div>
       </div>
@@ -768,94 +505,68 @@
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="wrap">
-
     <div data-lang="en" class="active">
-      <div class="section-tag">My Work</div>
-      <h2 class="section-title">Projects I've <em>Built</em></h2>
-      <p class="section-lead">A selection of websites I've created for real businesses. More coming soon.</p>
+      <div class="kicker">Case Index</div>
+      <h2 class="section-title">Selected Work</h2>
+      <p class="section-lead">Websites built for real businesses. More case studies added regularly.</p>
     </div>
     <div data-lang="ru">
-      <div class="section-tag">Мои работы</div>
-      <h2 class="section-title">Проекты, которые я <em>создала</em></h2>
-      <p class="section-lead">Сайты, созданные для реальных клиентов. Скоро будет больше.</p>
+      <div class="kicker">Индекс работ</div>
+      <h2 class="section-title">Избранные проекты</h2>
+      <p class="section-lead">Сайты, созданные для реальных клиентов. Список регулярно пополняется.</p>
     </div>
     <div data-lang="kk">
-      <div class="section-tag">Менің жұмыстарым</div>
-      <h2 class="section-title">Мен жасаған <em>жобалар</em></h2>
-      <p class="section-lead">Нақты бизнестерге жасалған сайттар. Жақында тағы қосылады.</p>
+      <div class="kicker">Жұмыстар тізімі</div>
+      <h2 class="section-title">Таңдаулы жобалар</h2>
+      <p class="section-lead">Нақты бизнестерге жасалған сайттар. Тізім үнемі толықтырылады.</p>
     </div>
 
-    <div class="portfolio-grid">
-      <div class="project-card">
-        <div class="project-thumb">🛍️<span class="coming">Preview Coming Soon</span></div>
-        <div class="project-body">
-          <h4 data-lang="en" class="active">Boutique Fashion Store</h4>
-          <h4 data-lang="ru">Модный бутик</h4>
-          <h4 data-lang="kk">Сән бутигі</h4>
-          <p data-lang="en" class="active">A stylish landing page for a local clothing boutique. Built in Russian and Kazakh.</p>
-          <p data-lang="ru">Стильная страница для местного бутика. Создана на русском и казахском.</p>
-          <p data-lang="kk">Жергілікті бутикке арналған стильді бет. Орысша және қазақша жасалған.</p>
-          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">🇷🇺</span><span class="tag">🇰🇿</span></div>
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-thumb">FS</div>
+        <div class="case-body">
+          <div class="case-title"><span data-lang="en" class="active">Boutique Fashion Store</span><span data-lang="ru">Модный бутик</span><span data-lang="kk">Сән бутигі</span></div>
+          <div class="case-desc"><span data-lang="en" class="active">Landing page for a local clothing boutique, in Russian and Kazakh.</span><span data-lang="ru">Страница для местного бутика на русском и казахском.</span><span data-lang="kk">Жергілікті бутикке арналған бет, орысша және қазақша.</span></div>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb">☕<span class="coming">Preview Coming Soon</span></div>
-        <div class="project-body">
-          <h4 data-lang="en" class="active">Café Website</h4>
-          <h4 data-lang="ru">Сайт кафе</h4>
-          <h4 data-lang="kk">Кафе сайты</h4>
-          <p data-lang="en" class="active">A warm, inviting café site with menu, hours, and location in Turkish and English.</p>
-          <p data-lang="ru">Уютный сайт кафе с меню, графиком работы и адресом на турецком и английском.</p>
-          <p data-lang="kk">Мәзірі, жұмыс уақыты және мекенжайы бар кафе сайты. Түрікше және ағылшынша.</p>
-          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">🇹🇷</span><span class="tag">🇬🇧</span></div>
+
+      <div class="case-card">
+        <div class="case-thumb">CA</div>
+        <div class="case-body">
+          <div class="case-title"><span data-lang="en" class="active">Café Website</span><span data-lang="ru">Сайт кафе</span><span data-lang="kk">Кафе сайты</span></div>
+          <div class="case-desc"><span data-lang="en" class="active">Menu, hours, and location, in Turkish and English.</span><span data-lang="ru">Меню, часы работы и адрес на турецком и английском.</span><span data-lang="kk">Мәзір, жұмыс уақыты, мекенжай, түрікше және ағылшынша.</span></div>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb">🔧<span class="coming">Preview Coming Soon</span></div>
-        <div class="project-body">
-          <h4 data-lang="en" class="active">Home Repair Services</h4>
-          <h4 data-lang="ru">Услуги по ремонту</h4>
-          <h4 data-lang="kk">Жөндеу қызметтері</h4>
-          <p data-lang="en" class="active">Professional service site with contact form and service listings in Russian.</p>
-          <p data-lang="ru">Профессиональный сайт с формой обратной связи и списком услуг на русском.</p>
-          <p data-lang="kk">Байланыс пішіні мен қызметтер тізімі бар кәсіби сайт. Орысша.</p>
-          <div class="tags"><span class="tag">HTML</span><span class="tag">Python</span><span class="tag">🇷🇺</span></div>
+
+      <div class="case-card">
+        <div class="case-thumb">HR</div>
+        <div class="case-body">
+          <div class="case-title"><span data-lang="en" class="active">Home Repair Services</span><span data-lang="ru">Услуги по ремонту</span><span data-lang="kk">Жөндеу қызметтері</span></div>
+          <div class="case-desc"><span data-lang="en" class="active">Contact form and service listings, in Russian.</span><span data-lang="ru">Форма обратной связи и список услуг на русском.</span><span data-lang="kk">Байланыс пішіні мен қызметтер тізімі, орысша.</span></div>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb">📚<span class="coming">Preview Coming Soon</span></div>
-        <div class="project-body">
-          <h4 data-lang="en" class="active">Tutoring Center</h4>
-          <h4 data-lang="ru">Учебный центр</h4>
-          <h4 data-lang="kk">Оқу орталығы</h4>
-          <p data-lang="en" class="active">Educational center website with course listings, schedule, and enrollment in English.</p>
-          <p data-lang="ru">Сайт образовательного центра с курсами, расписанием и записью на английском.</p>
-          <p data-lang="kk">Курстар, кесте және тіркеу бар білім беру орталығының сайты. Ағылшынша.</p>
-          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">🇬🇧</span></div>
+
+      <div class="case-card">
+        <div class="case-thumb">TC</div>
+        <div class="case-body">
+          <div class="case-title"><span data-lang="en" class="active">Tutoring Center</span><span data-lang="ru">Учебный центр</span><span data-lang="kk">Оқу орталығы</span></div>
+          <div class="case-desc"><span data-lang="en" class="active">Course listings, schedule, and enrollment, in English.</span><span data-lang="ru">Курсы, расписание и запись на английском.</span><span data-lang="kk">Курстар, кесте, тіркеу, ағылшынша.</span></div>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb">💆<span class="coming">Preview Coming Soon</span></div>
-        <div class="project-body">
-          <h4 data-lang="en" class="active">Spa &amp; Wellness Studio</h4>
-          <h4 data-lang="ru">СПА-студия</h4>
-          <h4 data-lang="kk">Spa студиясы</h4>
-          <p data-lang="en" class="active">An elegant spa website featuring services, gallery, and booking in English and Turkish.</p>
-          <p data-lang="ru">Элегантный сайт СПА с услугами, галереей и записью на английском и турецком.</p>
-          <p data-lang="kk">Қызметтер, галерея және жазылу бар сән spa сайты. Ағылшынша және түрікше.</p>
-          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">🇬🇧</span><span class="tag">🇹🇷</span></div>
+
+      <div class="case-card">
+        <div class="case-thumb">SP</div>
+        <div class="case-body">
+          <div class="case-title"><span data-lang="en" class="active">Spa &amp; Wellness Studio</span><span data-lang="ru">СПА-студия</span><span data-lang="kk">Spa студиясы</span></div>
+          <div class="case-desc"><span data-lang="en" class="active">Services, gallery, and booking, in English and Turkish.</span><span data-lang="ru">Услуги, галерея и запись на английском и турецком.</span><span data-lang="kk">Қызметтер, галерея, жазылу, ағылшынша және түрікше.</span></div>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb">🏪<span class="coming">Preview Coming Soon</span></div>
-        <div class="project-body">
-          <h4 data-lang="en" class="active">Local Shop</h4>
-          <h4 data-lang="ru">Местный магазин</h4>
-          <h4 data-lang="kk">Жергілікті дүкен</h4>
-          <p data-lang="en" class="active">A clean, simple website for a neighborhood store with product highlights in Kazakh and Russian.</p>
-          <p data-lang="ru">Чистый и простой сайт для местного магазина с товарами на казахском и русском.</p>
-          <p data-lang="kk">Өнімдер тізімі бар жергілікті дүкеннің таза сайты. Қазақша және орысша.</p>
-          <div class="tags"><span class="tag">HTML</span><span class="tag">🇰🇿</span><span class="tag">🇷🇺</span></div>
+
+      <div class="case-card">
+        <div class="case-thumb">LS</div>
+        <div class="case-body">
+          <div class="case-title"><span data-lang="en" class="active">Local Shop</span><span data-lang="ru">Местный магазин</span><span data-lang="kk">Жергілікті дүкен</span></div>
+          <div class="case-desc"><span data-lang="en" class="active">Clean, simple site, in Kazakh and Russian.</span><span data-lang="ru">Чистый и простой сайт на казахском и русском.</span><span data-lang="kk">Таза, қарапайым сайт, қазақша және орысша.</span></div>
         </div>
       </div>
     </div>
@@ -863,91 +574,79 @@
 </section>
 
 <!-- SERVICES -->
-<section id="services" class="services-bg">
+<section id="services">
   <div class="wrap">
-
     <div data-lang="en" class="active">
-      <div class="section-tag">Services</div>
-      <h2 class="section-title">What I Can <em>Do For You</em></h2>
-      <p class="section-lead">Every business has different needs. I build exactly what yours requires.</p>
+      <div class="kicker">Engagement</div>
+      <h2 class="section-title">What I Can Build For You</h2>
+      <p class="section-lead">No fixed packages — every business is different, and so is every quote.</p>
     </div>
     <div data-lang="ru">
-      <div class="section-tag">Услуги</div>
-      <h2 class="section-title">Что я могу <em>сделать для вас</em></h2>
-      <p class="section-lead">У каждого бизнеса свои потребности. Я создаю именно то, что нужно вашему.</p>
+      <div class="kicker">Сотрудничество</div>
+      <h2 class="section-title">Что я могу сделать для вас</h2>
+      <p class="section-lead">Без фиксированных пакетов — каждый бизнес и каждая смета уникальны.</p>
     </div>
     <div data-lang="kk">
-      <div class="section-tag">Қызметтер</div>
-      <h2 class="section-title">Мен сіз үшін <em>не жасай аламын</em></h2>
-      <p class="section-lead">Әр бизнестің өз қажеттіліктері бар. Мен сіздің бизнесіңізге қажетті нәрсені жасаймын.</p>
+      <div class="kicker">Ынтымақтастық</div>
+      <h2 class="section-title">Сіз үшін не жасай аламын</h2>
+      <p class="section-lead">Тұрақты пакеттер жоқ — әр бизнес және әр баға бөлек.</p>
     </div>
 
-    <div class="services-intro">
-      <div class="text">
+    <div class="services-layout">
+      <div class="services-text">
         <div data-lang="en" class="active">
-          <p>I don't offer fixed packages — because no two businesses are the same. Whether you're a small local shop or a growing company, I'll work with you to build a website that fits your goals, your audience, and your budget.</p>
-          <p>Every project starts with a conversation. Tell me what you need, and together we'll figure out the best way to build it. <strong>All details, scope, and pricing are discussed once you reach out.</strong></p>
+          <p>I look at what the business actually needs — audience, budget, and goals — then build around that, not a preset template.</p>
         </div>
         <div data-lang="ru">
-          <p>Я не предлагаю фиксированные пакеты — потому что каждый бизнес уникален. Независимо от того, небольшой ли вы магазин или растущая компания, я создам сайт, соответствующий вашим целям и бюджету.</p>
-          <p>Каждый проект начинается с разговора. Расскажите, что вам нужно — вместе мы найдём лучшее решение. <strong>Все детали, объём и стоимость обсуждаются после связи со мной.</strong></p>
+          <p>Я смотрю на реальные потребности бизнеса — аудиторию, бюджет и цели — и строю сайт именно под них, а не по шаблону.</p>
         </div>
         <div data-lang="kk">
-          <p>Мен тұрақты пакеттер ұсынбаймын — себебі әр бизнес бірегей. Сіз кішкентай дүкен болсаңыз да, өсіп келе жатқан компания болсаңыз да, мен сіздің мақсаттарыңызға сай сайт жасаймын.</p>
-          <p>Әр жоба сұхбаттан басталады. Маған қажеттіліктеріңізді айтыңыз — бірге ең жақсы шешімді табамыз. <strong>Барлық мәліметтер, көлем және баға хабарласқаннан кейін талқыланады.</strong></p>
+          <p>Бизнестің нақты қажеттілігіне қараймын — аудитория, бюджет, мақсаттар — және дайын үлгі емес, соған сай сайт жасаймын.</p>
+        </div>
+
+        <div class="menu-list">
+          <div class="menu-item">
+            <div class="m-icon"><svg class="icon"><use href="#icon-home"/></svg></div>
+            <div>
+              <h5><span data-lang="en" class="active">Landing Pages</span><span data-lang="ru">Лендинги</span><span data-lang="kk">Лендинг беттер</span></h5>
+              <p><span data-lang="en" class="active">Single-page sites that present your business clearly.</span><span data-lang="ru">Одностраничные сайты, чётко представляющие бизнес.</span><span data-lang="kk">Бизнесіңізді нақты ұсынатын бір беттік сайттар.</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="m-icon"><svg class="icon"><use href="#icon-building"/></svg></div>
+            <div>
+              <h5><span data-lang="en" class="active">Business Websites</span><span data-lang="ru">Сайты для бизнеса</span><span data-lang="kk">Бизнес сайттары</span></h5>
+              <p><span data-lang="en" class="active">Multi-page sites with everything your company needs.</span><span data-lang="ru">Многостраничные сайты со всем необходимым.</span><span data-lang="kk">Компанияға қажет барлығы бар көп беттік сайттар.</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="m-icon"><svg class="icon"><use href="#icon-globe"/></svg></div>
+            <div>
+              <h5><span data-lang="en" class="active">Multilingual Sites</span><span data-lang="ru">Многоязычные сайты</span><span data-lang="kk">Көп тілді сайттар</span></h5>
+              <p><span data-lang="en" class="active">Kazakh, Russian, English, Turkish — or a combination.</span><span data-lang="ru">Казахский, русский, английский, турецкий — или комбинация.</span><span data-lang="kk">Қазақша, орысша, ағылшынша, түрікше — немесе комбинация.</span></p>
+            </div>
+          </div>
+          <div class="menu-item">
+            <div class="m-icon"><svg class="icon"><use href="#icon-settings"/></svg></div>
+            <div>
+              <h5><span data-lang="en" class="active">Custom Features</span><span data-lang="ru">Особые функции</span><span data-lang="kk">Арнайы мүмкіндіктер</span></h5>
+              <p><span data-lang="en" class="active">Contact forms, galleries, menus, booking, and more.</span><span data-lang="ru">Формы, галереи, меню, бронирование и другое.</span><span data-lang="kk">Пішіндер, галереялар, мәзірлер, брондау және т.б.</span></p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="offer-grid">
-        <div class="offer-item">
-          <div class="o-icon">🏠</div>
-          <h5 data-lang="en" class="active">Landing Pages</h5>
-          <h5 data-lang="ru">Лендинги</h5>
-          <h5 data-lang="kk">Лендинг беттер</h5>
-          <p data-lang="en" class="active">Single-page sites that present your business clearly and beautifully.</p>
-          <p data-lang="ru">Одностраничные сайты, которые чётко и красиво представляют ваш бизнес.</p>
-          <p data-lang="kk">Бизнесіңізді нақты және әдемі ұсынатын бір беттік сайттар.</p>
-        </div>
-        <div class="offer-item">
-          <div class="o-icon">🏢</div>
-          <h5 data-lang="en" class="active">Business Websites</h5>
-          <h5 data-lang="ru">Сайты для бизнеса</h5>
-          <h5 data-lang="kk">Бизнес сайттары</h5>
-          <p data-lang="en" class="active">Multi-page sites with everything your company needs to shine online.</p>
-          <p data-lang="ru">Многостраничные сайты со всем необходимым для вашей компании.</p>
-          <p data-lang="kk">Компанияңыздың онлайн болуы үшін қажет барлығы бар көп беттік сайттар.</p>
-        </div>
-        <div class="offer-item">
-          <div class="o-icon">🌍</div>
-          <h5 data-lang="en" class="active">Multilingual Sites</h5>
-          <h5 data-lang="ru">Многоязычные сайты</h5>
-          <h5 data-lang="kk">Көп тілді сайттар</h5>
-          <p data-lang="en" class="active">Websites in Kazakh, Russian, English, or Turkish — or a combination.</p>
-          <p data-lang="ru">Сайты на казахском, русском, английском, турецком — или в комбинации.</p>
-          <p data-lang="kk">Қазақша, орысша, ағылшынша немесе түрікше сайттар — немесе комбинация.</p>
-        </div>
-        <div class="offer-item">
-          <div class="o-icon">⚙️</div>
-          <h5 data-lang="en" class="active">Custom Features</h5>
-          <h5 data-lang="ru">Особые функции</h5>
-          <h5 data-lang="kk">Арнайы мүмкіндіктер</h5>
-          <p data-lang="en" class="active">Contact forms, galleries, menus, booking sections, and more — whatever you need.</p>
-          <p data-lang="ru">Формы, галереи, меню, разделы бронирования и многое другое — всё, что нужно.</p>
-          <p data-lang="kk">Пішіндер, галереялар, мәзірлер, брондау бөлімдері және т.б. — қажет нәрсенің бәрі.</p>
-        </div>
-      </div>
+      <div></div>
     </div>
 
-    <div class="cta-box">
-      <h3 data-lang="en" class="active">Have something specific in mind?</h3>
-      <h3 data-lang="ru">Есть конкретная идея?</h3>
-      <h3 data-lang="kk">Нақты идея бар ма?</h3>
-      <p data-lang="en" class="active">Every project is unique. Fill out the contact form and tell me about your business — we'll figure out the perfect solution together. All pricing and details are discussed personally once we connect.</p>
-      <p data-lang="ru">Каждый проект уникален. Заполните форму и расскажите о своём бизнесе — вместе найдём идеальное решение. Стоимость и детали обсуждаются лично после связи.</p>
-      <p data-lang="kk">Әр жоба бірегей. Пішінді толтырып, бизнесіңіз туралы айтыңыз — бірге ең жақсы шешімді табамыз. Баға мен мәліметтер жеке талқыланады.</p>
-      <a href="#contact" class="btn-white">
+    <div class="cta-panel">
+      <div>
+        <h3><span data-lang="en" class="active">Got a project in mind?</span><span data-lang="ru">Есть конкретная идея?</span><span data-lang="kk">Нақты идея бар ма?</span></h3>
+        <p><span data-lang="en" class="active">Fill out the form below — I'll follow up with scope and pricing.</span><span data-lang="ru">Заполните форму ниже — отвечу с деталями объёма и стоимости.</span><span data-lang="kk">Төмендегі пішінді толтырыңыз — көлемі мен бағасы туралы жауап беремін.</span></p>
+      </div>
+      <a href="#contact" class="btn btn-outline">
         <span data-lang="en" class="active">Let's Talk →</span>
-        <span data-lang="ru">Давайте пообщаемся →</span>
+        <span data-lang="ru">Пообщаемся →</span>
         <span data-lang="kk">Байланысайық →</span>
       </a>
     </div>
@@ -957,154 +656,93 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
-
     <div data-lang="en" class="active">
-      <div class="section-tag">Contact</div>
-      <h2 class="section-title">Let's <em>Work Together</em></h2>
+      <div class="kicker">Contact</div>
+      <h2 class="section-title">Let's Work Together</h2>
       <p class="section-lead">Fill out the form below and we'll get back to you shortly.</p>
     </div>
     <div data-lang="ru">
-      <div class="section-tag">Контакт</div>
-      <h2 class="section-title">Давайте <em>работать вместе</em></h2>
+      <div class="kicker">Контакт</div>
+      <h2 class="section-title">Давайте работать вместе</h2>
       <p class="section-lead">Заполните форму ниже, и мы свяжемся с вами в ближайшее время.</p>
     </div>
     <div data-lang="kk">
-      <div class="section-tag">Байланыс</div>
-      <h2 class="section-title">Бірге <em>жұмыс жасайық</em></h2>
+      <div class="kicker">Байланыс</div>
+      <h2 class="section-title">Бірге жұмыс жасайық</h2>
       <p class="section-lead">Төмендегі пішінді толтырыңыз, жақын арада хабарласамыз.</p>
     </div>
 
     <div class="contact-grid">
-      <!-- FORM -->
-      <div class="contact-form-box">
-        <h3>
-          <span data-lang="en" class="active">Send a Message</span>
-          <span data-lang="ru">Отправить сообщение</span>
-          <span data-lang="kk">Хабарлама жіберу</span>
-        </h3>
+      <div class="form-panel">
+        <h3><span data-lang="en" class="active">Send an Inquiry</span><span data-lang="ru">Отправить запрос</span><span data-lang="kk">Сұраныс жіберу</span></h3>
         <p class="form-sub">
-          <span data-lang="en" class="active">All inquiries go directly to my's parents who handle everything professionally on my behalf.</span>
-          <span data-lang="ru">Все запросы поступают напрямую к моим родителям , которые  управляют всеми профессиональными вопросами.</span>
-          <span data-lang="kk">Барлық сұраулар Менің ата-анаға тікелей жіберіледі, олар барлық мәселелерді кәсіби түрде шешеді.</span>
+          <span data-lang="en" class="active">Share a few details about your business and what you need.</span>
+          <span data-lang="ru">Расскажите немного о бизнесе и о том, что вам нужно.</span>
+          <span data-lang="kk">Бизнесіңіз және қажеттілігіңіз туралы қысқаша айтыңыз.</span>
         </p>
 
         <form id="contactForm" onsubmit="submitForm(event)">
           <div class="form-row">
             <div class="field">
-              <label>
-                <span data-lang="en" class="active">Full Name *</span>
-                <span data-lang="ru">Полное имя *</span>
-                <span data-lang="kk">Толық аты *</span>
-              </label>
+              <label><span data-lang="en" class="active">Full Name *</span><span data-lang="ru">Полное имя *</span><span data-lang="kk">Толық аты *</span></label>
               <input type="text" name="name" required placeholder="Your name"/>
             </div>
             <div class="field">
-              <label>
-                <span data-lang="en" class="active">Email Address *</span>
-                <span data-lang="ru">Электронная почта *</span>
-                <span data-lang="kk">Электрондық пошта *</span>
-              </label>
+              <label><span data-lang="en" class="active">Email *</span><span data-lang="ru">Эл. почта *</span><span data-lang="kk">Пошта *</span></label>
               <input type="email" name="email" required placeholder="you@example.com"/>
             </div>
           </div>
           <div class="form-row">
             <div class="field">
-              <label>
-                <span data-lang="en" class="active">Phone Number</span>
-                <span data-lang="ru">Номер телефона</span>
-                <span data-lang="kk">Телефон нөмірі</span>
-              </label>
+              <label><span data-lang="en" class="active">Phone</span><span data-lang="ru">Телефон</span><span data-lang="kk">Телефон</span></label>
               <input type="tel" name="phone" placeholder="+7 xxx xxx xx xx"/>
             </div>
             <div class="field">
-              <label>
-                <span data-lang="en" class="active">Business / Organization *</span>
-                <span data-lang="ru">Бизнес / Организация *</span>
-                <span data-lang="kk">Бизнес / Ұйым *</span>
-              </label>
-              <input type="text" name="company" required placeholder="Your company name"/>
+              <label><span data-lang="en" class="active">Business Name *</span><span data-lang="ru">Компания *</span><span data-lang="kk">Ұйым *</span></label>
+              <input type="text" name="company" required placeholder="Your company"/>
             </div>
           </div>
           <div class="field">
-            <label>
-              <span data-lang="en" class="active">Website Language Preference</span>
-              <span data-lang="ru">Язык сайта</span>
-              <span data-lang="kk">Сайт тілі</span>
-            </label>
+            <label><span data-lang="en" class="active">Website Language</span><span data-lang="ru">Язык сайта</span><span data-lang="kk">Сайт тілі</span></label>
             <select name="language">
-              <option value="kazakh">🇰🇿 Kazakh / Қазақша</option>
-              <option value="russian">🇷🇺 Russian / Русский</option>
-              <option value="english" selected>🇬🇧 English</option>
-              <option value="turkish">🇹🇷 Turkish / Türkçe</option>
-              <option value="multilingual">🌍 Multiple languages</option>
+              <option value="kazakh">Kazakh</option>
+              <option value="russian">Russian</option>
+              <option value="english" selected>English</option>
+              <option value="turkish">Turkish</option>
+              <option value="multilingual">Multiple languages</option>
             </select>
           </div>
           <div class="field">
-            <label>
-              <span data-lang="en" class="active">Tell me about your project *</span>
-              <span data-lang="ru">Расскажите о своём проекте *</span>
-              <span data-lang="kk">Жобаңыз туралы айтыңыз *</span>
-            </label>
-            <textarea name="message" required placeholder="What kind of website do you need? What does your business do? Any specific features you want?"></textarea>
+            <label><span data-lang="en" class="active">Project Details *</span><span data-lang="ru">О проекте *</span><span data-lang="kk">Жоба туралы *</span></label>
+            <textarea name="message" required placeholder="What kind of website do you need? What does your business do?"></textarea>
           </div>
           <button type="submit" class="form-submit">
-            <span data-lang="en" class="active">Send Message ✉️</span>
-            <span data-lang="ru">Отправить ✉️</span>
-            <span data-lang="kk">Жіберу ✉️</span>
+            <span data-lang="en" class="active">Send Message</span>
+            <span data-lang="ru">Отправить</span>
+            <span data-lang="kk">Жіберу</span>
           </button>
         </form>
         <div class="form-success" id="formSuccess">
-          <span data-lang="en" class="active">✅ Message sent! We'll get back to you soon.</span>
-          <span data-lang="ru">✅ Сообщение отправлено! Скоро ответим.</span>
-          <span data-lang="kk">✅ Хабарлама жіберілді! Жақын арада хабарласамыз.</span>
+          <span data-lang="en" class="active">Message sent — we'll get back to you soon.</span>
+          <span data-lang="ru">Сообщение отправлено! Скоро ответим.</span>
+          <span data-lang="kk">Хабарлама жіберілді! Жақын арада хабарласамыз.</span>
         </div>
       </div>
 
-      <!-- CONTACT INFO -->
       <div class="contact-info">
         <div class="info-card">
-          <h4>
-            <span data-lang="en" class="active">Direct Contact</span>
-            <span data-lang="ru">Прямой контакт</span>
-            <span data-lang="kk">Тікелей байланыс</span>
-          </h4>
-          <div class="info-item">
-            <span class="i-icon">📧</span>
-            <a href="mailto:damelikaskey@gmail.com">damelikaskey@gmail.com</a>
-          </div>
-          <div class="info-item">
-            <span class="i-icon">📱</span>
-            <a href="tel:+77477991166">+7 747 799 11 66</a>
-          </div>
-          <div class="info-item">
-            <span class="i-icon">💬</span>
-            <span>WhatsApp / Telegram</span>
-          </div>
+          <h4><span data-lang="en" class="active">Direct Contact</span><span data-lang="ru">Прямой контакт</span><span data-lang="kk">Тікелей байланыс</span></h4>
+          <div class="info-item"><svg class="icon"><use href="#icon-mail"/></svg><a href="mailto:damelikaskey@gmail.com">damelikaskey@gmail.com</a></div>
+          <div class="info-item"><svg class="icon"><use href="#icon-phone"/></svg><a href="tel:+77477991166">+7 747 799 11 66</a></div>
+          <div class="info-item"><svg class="icon"><use href="#icon-chat"/></svg><span>WhatsApp / Telegram</span></div>
         </div>
 
         <div class="info-card">
-          <h4>
-            <span data-lang="en" class="active">Response Time</span>
-            <span data-lang="ru">Время ответа</span>
-            <span data-lang="kk">Жауап беру уақыты</span>
-          </h4>
-          <p style="font-size:0.88rem;color:var(--text-mid);line-height:1.65;">
-            <span data-lang="en" class="active">We typically respond within 24–48 hours. For urgent projects, please mention it in your message.</span>
-            <span data-lang="ru">Обычно отвечаем в течение 24–48 часов. Для срочных проектов укажите это в сообщении.</span>
-            <span data-lang="kk">Әдетте 24–48 сағат ішінде жауап береміз. Шұғыл жобалар үшін хабарламада көрсетіңіз.</span>
-          </p>
-        </div>
-
-        <div class="parental-card">
-          <h4>👪 
-            <span data-lang="en" class="active">Parental Oversight</span>
-            <span data-lang="ru">Родительский контроль</span>
-            <span data-lang="kk">Ата-ана бақылауы</span>
-          </h4>
-          <p>
-            <span data-lang="en" class="active">I am 12 years old. <strong>All business communication, project agreements, and payments are exclusively managed by my parents.</strong> This ensures a safe, professional, and fully accountable working relationship for everyone involved.</span>
-            <span data-lang="ru">Мне 12 лет. <strong>Вся деловая коммуникация, договорённости и оплата осуществляются исключительно через моих родителей.</strong> Это обеспечивает безопасное и профессиональное сотрудничество.</span>
-            <span data-lang="kk">Маған 12 жас. <strong>Барлық іскери байланыс, келісімдер және төлемдер тек ата-анам арқылы жүргізіледі.</strong> Бұл барлығы үшін қауіпсіз және кәсіби ынтымақтастықты қамтамасыз етеді.</span>
+          <h4><span data-lang="en" class="active">Response Time</span><span data-lang="ru">Время ответа</span><span data-lang="kk">Жауап уақыты</span></h4>
+          <p class="small">
+            <span data-lang="en" class="active">Typically 24–48 hours. Mention urgency in your message if needed.</span>
+            <span data-lang="ru">Обычно 24–48 часов. Укажите срочность в сообщении при необходимости.</span>
+            <span data-lang="kk">Әдетте 24–48 сағат. Шұғыл болса, хабарламада көрсетіңіз.</span>
           </p>
         </div>
       </div>
@@ -1114,83 +752,71 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Dameli.codes</div>
-  <div class="footer-contacts">
-    <span>📧 <a href="mailto:damelikaskey@gmail.com">damelikaskey@gmail.com</a></span>
-    <span>📱 <a href="tel:+77477991166">+7 747 799 11 66</a></span>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Dameli.codes</div>
+        <p class="footer-tagline">
+          <span data-lang="en" class="active">Professional websites, built by hand in HTML.</span>
+          <span data-lang="ru">Профессиональные сайты, написанные вручную на HTML.</span>
+          <span data-lang="kk">Қолмен, HTML тілінде жасалған кәсіби сайттар.</span>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-contacts">
+        <a href="mailto:damelikaskey@gmail.com">damelikaskey@gmail.com</a>
+        <a href="tel:+77477991166">+7 747 799 11 66</a>
+      </div>
+      <div class="footer-copy">
+        <span data-lang="en" class="active">© 2025 Dameli.codes. All rights reserved.</span>
+        <span data-lang="ru">© 2025 Dameli.codes. Все права защищены.</span>
+        <span data-lang="kk">© 2025 Dameli.codes. Барлық құқықтар қорғалған.</span>
+      </div>
+    </div>
   </div>
-  <p>
-    <span data-lang="en" class="active">© 2025 Dameli </span>
-    <span data-lang="ru">© 2025 Дамели </span>
-    <span data-lang="kk">© 2025 Дәмелі </span>
-  </p>
 </footer>
 
 <script>
-  // ── LANGUAGE SWITCHER ──
-  let currentLang = 'en';
+let currentLang = 'en';
+const navLabels = {
+  about:{en:'About',ru:'Обо мне',kk:'Мен туралы'},
+  skills:{en:'Skills',ru:'Навыки',kk:'Дағдылар'},
+  portfolio:{en:'Portfolio',ru:'Портфолио',kk:'Портфолио'},
+  services:{en:'Services',ru:'Услуги',kk:'Қызметтер'},
+  contact:{en:'Contact',ru:'Контакт',kk:'Байланыс'},
+};
 
-  const navLabels = {
-    about:     { en:'About',     ru:'Обо мне',  kk:'Мен туралы' },
-    skills:    { en:'Skills',    ru:'Навыки',   kk:'Дағдылар'   },
-    portfolio: { en:'Portfolio', ru:'Портфолио',kk:'Портфолио'  },
-    services:  { en:'Services',  ru:'Услуги',   kk:'Қызметтер'  },
-    contact:   { en:'Contact',   ru:'Контакт',  kk:'Байланыс'   },
-  };
+function setLang(lang){
+  currentLang = lang;
+  document.querySelectorAll('[data-lang]').forEach(el=>{
+    el.classList.toggle('active', el.getAttribute('data-lang')===lang);
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.getAttribute('data-target')===lang);
+  });
+  document.querySelectorAll('[data-nav]').forEach(a=>{
+    const key=a.getAttribute('data-nav');
+    if(navLabels[key]) a.textContent = navLabels[key][lang];
+  });
+  document.documentElement.lang = lang==='kk' ? 'kz' : lang;
+}
 
-  function setLang(lang) {
-    currentLang = lang;
-
-    // Toggle all [data-lang] block elements
-    document.querySelectorAll('[data-lang]').forEach(el => {
-      el.classList.toggle('active', el.getAttribute('data-lang') === lang);
-    });
-
-    // Toggle flag buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-target') === lang);
-    });
-
-    // Update nav link labels
-    document.querySelectorAll('[data-nav]').forEach(a => {
-      const key = a.getAttribute('data-nav');
-      if (navLabels[key]) a.textContent = navLabels[key][lang];
-    });
-
-    // Update html lang attribute
-    document.documentElement.lang = lang === 'kk' ? 'kz' : lang;
-  }
-
-  // ── CONTACT FORM ──
-  function submitForm(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-
-    // Build mailto link as fallback (direct email)
-    const name    = data.get('name');
-    const email   = data.get('email');
-    const phone   = data.get('phone') || 'Not provided';
-    const company = data.get('company');
-    const lang    = data.get('language');
-    const message = data.get('message');
-
-    const subject = encodeURIComponent(`Website Inquiry from ${name} — ${company}`);
-    const body    = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\nLanguage Preference: ${lang}\n\nProject Details:\n${message}`
-    );
-
-    // Open mailto — sends to Dameli's email
-    window.location.href = `mailto:damelikaskey@gmail.com?subject=${subject}&body=${body}`;
-
-    // Show success message
-    document.getElementById('formSuccess').style.display = 'block';
-    // Make success message children reflect current lang
-    document.querySelectorAll('#formSuccess [data-lang]').forEach(el => {
-      el.classList.toggle('active', el.getAttribute('data-lang') === currentLang);
-    });
-    form.reset();
-  }
+function submitForm(e){
+  e.preventDefault();
+  const form=e.target;
+  const data=new FormData(form);
+  const name=data.get('name'), email=data.get('email'), phone=data.get('phone')||'Not provided';
+  const company=data.get('company'), lang=data.get('language'), message=data.get('message');
+  const subject=encodeURIComponent(`Website Inquiry from ${name} — ${company}`);
+  const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\nLanguage Preference: ${lang}\n\nProject Details:\n${message}`);
+  window.location.href=`mailto:damelikaskey@gmail.com?subject=${subject}&body=${body}`;
+  document.getElementById('formSuccess').style.display='block';
+  document.querySelectorAll('#formSuccess [data-lang]').forEach(el=>{
+    el.classList.toggle('active', el.getAttribute('data-lang')===currentLang);
+  });
+  form.reset();
+}
 </script>
 
 </body>
